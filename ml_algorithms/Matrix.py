@@ -25,6 +25,13 @@ class Matrix:
     def substract(self, value):
         return self.__arithmetics(value, "substraction")
 
+    def map(self, fn):
+        tmp = []
+        for _, x in enumerate(self.data):
+            tmp.append(fn(x))
+        return tmp
+
+
     @staticmethod
     def dot(m1, m2):
         data_m1 = m1.data
@@ -59,14 +66,14 @@ class Matrix:
     def print(self):
         data = self.data
         print("[", end="")
-        for _, x in enumerate(data):
+        for i, x in enumerate(data):
             print("[", end="")
-            for _, y in enumerate(x):
-                if y == x[-1]:
+            for j, y in enumerate(x):
+                if j == len(x) - 1:
                     print(y, end="")
                 else:
                     print(y, end=", ")
-            if x == data[-1]:
+            if i == len(data) - 1:
                 print("]", end="")
             else:
                 print("]")

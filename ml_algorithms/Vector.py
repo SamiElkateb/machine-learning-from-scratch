@@ -5,8 +5,8 @@ class Vector:
     def print(self):
         data = self.data
         print("[", end="")
-        for _, x in enumerate(data):
-            if x == data[-1]:
+        for i, x in enumerate(data):
+            if i == len(data) - 1:
                 print(x, end="")
             else:
                 print(x, end=", ")
