@@ -14,15 +14,13 @@ class LinearRegression:
         self.weights = Vector.zeros(n_features)
         self.bias = 0
         for _ in range(self.n_iterations):
-            y_pred = Matrix.dot(X, self.weights).add(self.bias)
-            dw = Matrix.dot(X.transpose(), y_pred.substract(y)
-                            ).multiply(1/n_samples)
-            db = (1/n_samples) * Vector.sum(y_pred.substract(y))
-            self.weights = self.weights.substract(
-                dw.multiply(self.learning_rate))
-            self.bias = self.bias - self.learning_rate*db
+            y_pred = (X @ self.weights) + self.bias
+            dw = (X.transpose() @ (y_pred - y)) * (1 / n_samples)
+            db = (1 / n_samples) * Vector.sum(y_pred - y)
+            self.weights = self.weights - (dw * self.learning_rate)
+            self.bias = self.bias - self.learning_rate * db
 
     def predict(self, X):
         if self.weights is None:
             raise Exception("Train model before predicting")
-        return Matrix.dot(X, self.weights).add(self.bias)
+        return (X @ self.weights) + self.bias

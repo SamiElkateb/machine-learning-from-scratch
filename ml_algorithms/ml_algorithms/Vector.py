@@ -12,13 +12,13 @@ class Vector:
                 print(x, end=", ")
         print("]")
 
-    def add(self, value):
+    def __add__(self, value):
         return self.__arithmetics(value, "addition")
 
-    def multiply(self, value):
+    def __mul__(self, value):
         return self.__arithmetics(value, "multiplication")
 
-    def substract(self, value):
+    def __sub__(self, value):
         return self.__arithmetics(value, "substraction")
 
     @staticmethod
@@ -50,30 +50,29 @@ class Vector:
         vector = self.clone()
         if isinstance(value, (int, float)):
             for x, _ in enumerate(vector.data):
-                if sign == 'addition':
+                if sign == "addition":
                     vector.data[x] += value
-                elif sign == 'substraction':
+                elif sign == "substraction":
                     vector.data[x] -= value
-                elif sign == 'multiplication':
+                elif sign == "multiplication":
                     vector.data[x] *= value
-                elif sign == 'division':
+                elif sign == "division":
                     vector.data[x] /= value
                 else:
                     raise Exception("Arithmetic sign not valid")
         elif isinstance(value, Vector):
             vector_data = value.data
             for x, _ in enumerate(vector.data):
-                if sign == 'addition':
+                if sign == "addition":
                     vector.data[x] += vector_data[x]
-                elif sign == 'substraction':
+                elif sign == "substraction":
                     vector.data[x] -= vector_data[x]
-                elif sign == 'multiplication':
+                elif sign == "multiplication":
                     vector.data[x] *= vector_data[x]
-                elif sign == 'division':
+                elif sign == "division":
                     vector.data[x] /= vector_data[x]
                 else:
                     raise Exception("Arithmetic sign not valid")
         else:
-            raise Exception(
-                "Arithmetics of Vector should be of type Vector or Scalar")
+            raise Exception("Arithmetics of Vector should be of type Vector or Scalar")
         return vector

@@ -5,7 +5,6 @@ from ml_algorithms import (KNN, LinearRegression, LossFunctions, Matrix,
                            PerformanceMetrics, Vector)
 
 
-
 def KNNExample():
     iris = datasets.load_iris()
     X, y = iris.data, iris.target
@@ -47,3 +46,6 @@ def LinearRegressionExample():
     predictions = linear_regression.predict(X_test)
     mse_res = LossFunctions.mse(y_test, predictions.data)
     print("MSE: ", mse_res)
+
+
+LinearRegressionExample()

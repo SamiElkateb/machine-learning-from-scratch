@@ -18,13 +18,13 @@ class Matrix:
         nb_features = len(self.data[0])
         return nb_samples, nb_features
 
-    def add(self, value):
+    def __add__(self, value):
         return self.__arithmetics(value, "addition")
 
-    def multiply(self, value):
+    def __mul__(self, value):
         return self.__arithmetics(value, "multiplication")
 
-    def substract(self, value):
+    def __sub__(self, value):
         return self.__arithmetics(value, "substraction")
 
     def map(self, fn):
@@ -33,9 +33,8 @@ class Matrix:
             tmp.append(fn(x))
         return tmp
 
-    @staticmethod
-    def dot(m1, m2):
-        data_m1 = m1.data
+    def __matmul__(self, m2):
+        data_m1 = self.data
         data_m2 = m2.data
         if isinstance(m2, Matrix):
             tmp = [[] for _ in enumerate(data_m1)]
