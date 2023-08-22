@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "ml-algorithms"
+version = "0.1.0"
+description = ""
+authors = ["Sami EL KATEB <67482346+SamiElkateb@users.noreply.github.com>"]
+readme = "README.md"
+packages = [{include = "ml_algorithms"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+scikit-learn = "^1.3.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

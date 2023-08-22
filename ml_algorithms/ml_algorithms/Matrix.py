@@ -1,6 +1,8 @@
 from .Vector import Vector
+
+
 class Matrix:
-    def __init__(self, data:list[list[float]]):
+    def __init__(self, data: list[list[float]]):
         self.data = data
 
     def transpose(self):
@@ -31,7 +33,6 @@ class Matrix:
             tmp.append(fn(x))
         return tmp
 
-
     @staticmethod
     def dot(m1, m2):
         data_m1 = m1.data
@@ -53,7 +54,10 @@ class Matrix:
                     res += data_m1[i][k] * data_m2[k]
                 tmp.append(res)
             return Vector(tmp)
-        else: raise Exception("Dot product should be between two matrices or a matrix and a vector")
+        else:
+            raise Exception(
+                "Dot product should be between two matrices or a matrix and a vector"
+            )
 
     @staticmethod
     def sum(matrix):
@@ -80,7 +84,7 @@ class Matrix:
         print("]")
 
     def clone(self):
-        tmp = [y for _, y in enumerate(x for _, x  in enumerate(self.data))]
+        tmp = [y for _, y in enumerate(x for _, x in enumerate(self.data))]
         return Matrix(tmp)
 
     def __arithmetics(self, value, sign):
@@ -88,13 +92,13 @@ class Matrix:
         if isinstance(value, (int, float)):
             for x, _ in enumerate(matrix.data):
                 for y, _ in enumerate(matrix.data[x]):
-                    if sign == 'addition':
+                    if sign == "addition":
                         matrix.data[x][y] += value
-                    elif sign == 'substraction':
+                    elif sign == "substraction":
                         matrix.data[x][y] -= value
-                    elif sign == 'multiplication':
+                    elif sign == "multiplication":
                         matrix.data[x][y] *= value
-                    elif sign == 'division':
+                    elif sign == "division":
                         matrix.data[x][y] /= value
                     else:
                         raise Exception("Arithmetic sign not valid")
@@ -102,13 +106,13 @@ class Matrix:
             vector_data = value.data
             for x, _ in enumerate(matrix.data):
                 for y, _ in enumerate(matrix.data[x]):
-                    if sign == 'addition':
+                    if sign == "addition":
                         matrix.data[x][y] += vector_data[x]
-                    elif sign == 'substraction':
+                    elif sign == "substraction":
                         matrix.data[x][y] -= vector_data[x]
-                    elif sign == 'multiplication':
+                    elif sign == "multiplication":
                         matrix.data[x][y] *= vector_data[x]
-                    elif sign == 'division':
+                    elif sign == "division":
                         matrix.data[x][y] /= vector_data[x]
                     else:
                         raise Exception("Arithmetic sign not valid")
@@ -116,16 +120,18 @@ class Matrix:
             matrix_data = value.data
             for x, _ in enumerate(matrix.data):
                 for y, _ in enumerate(matrix.data[x]):
-                    if sign == 'addition':
+                    if sign == "addition":
                         matrix.data[x][y] += matrix_data[x][y]
-                    elif sign == 'substraction':
+                    elif sign == "substraction":
                         matrix.data[x][y] -= matrix_data[x][y]
-                    elif sign == 'multiplication':
+                    elif sign == "multiplication":
                         matrix.data[x][y] *= matrix_data[x][y]
-                    elif sign == 'division':
+                    elif sign == "division":
                         matrix.data[x][y] /= matrix_data[x][y]
                     else:
                         raise Exception("Arithmetic sign not valid")
-        else: raise Exception("Arithmetics of Matrix should be of type Matrix, Vector or Scalar")
+        else:
+            raise Exception(
+                "Arithmetics of Matrix should be of type Matrix, Vector or Scalar"
+            )
         return matrix
-

@@ -1,6 +1,7 @@
 from .Matrix import Matrix, Vector
 from .utils import Distance
 
+
 class KNN:
     def __init__(self, k=5, distance="euclidean"):
         self.k = k
@@ -22,7 +23,7 @@ class KNN:
             distance = self.distance_algorithm(x_train, x)
             distances.append(distance)
 
-        # can be done in the same loop as the distance calculation, 
+        # can be done in the same loop as the distance calculation,
         # separated for clarity
         sorted_values = []
         k_nearest_labels = []
@@ -32,7 +33,7 @@ class KNN:
                 j += 1
             sorted_values.insert(j, x)
             k_nearest_labels.insert(j, self.y_train.data[i])
-        k_nearest_labels = k_nearest_labels[:self.k]
+        k_nearest_labels = k_nearest_labels[: self.k]
 
         counts = {}
         for item in k_nearest_labels:
@@ -40,6 +41,6 @@ class KNN:
                 counts[item] += 1
             else:
                 counts[item] = 1
-        
+
         sorted_items = sorted(counts.items(), key=lambda x: x[1], reverse=True)
         return sorted_items[0][0]
